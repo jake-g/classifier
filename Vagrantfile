@@ -48,7 +48,7 @@ config.vm.provision "shell", inline: <<-SHELL
 
   echo 'Copying terminal settings...'
   cp /vagrant/classifier/.bashrc /home/vagrant
-
+  
   # Get pretrained weights
   python /vagrant/classifier/download_weights.py
   
