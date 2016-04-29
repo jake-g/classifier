@@ -1,9 +1,8 @@
 ### Pictures
-uploads/
-.jpg
-.jpeg
-.png
-.bmp
+*.jpg
+*.jpeg
+*.png
+*.bmp
 
 ### Data
 data/
