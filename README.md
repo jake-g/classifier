@@ -1,20 +1,24 @@
-# Virtual Machine
+# Woof Demo V2
 
-#### Requires:
-* [Vagrant](https://www.vagrantup.com/downloads.html)
-* [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
-* [VirtualBox  Extension Pack](http://download.virtualbox.org/virtualbox/5.0.10/Oracle_VM_VirtualBox_Extension_Pack-5.0.10-104061.vbox-extpack)
+## Install
 
-#### Vagrant Usage:
-* Run `vagrant up` in the root directory of the repo to open the vm
-* `vagrant reload`can reload a running vm
-*  `vagrant provision` or `vagrant up --provision` will rerun the install scripts found in the `Vagrantfile`
-* To stop the vm run `vagrant halt`
-* To completely delete the virtual machine use `vagrant destroy`
+Install TensorFlow: check [here](https://www.tensorflow.org/versions/r0.11/get_started/os_setup.html) to see what version works (cpu / gpu / osx / linux) (use the pip method)
 
-#### Web App Usage
-1. `vagrant up && vagrant ssh` to boot and login to the server. Note the first time will take some time since it has to download the pretrained weights
-2. `cd /vagrant` the vagrant folder on the server is equivalent to the root folder on the host machine. Use this to share files between host and server.
-3. Run the backend with `python application.py`. This starts the backend on `localhost:5000`. This port is forwarded from the virtual server to the host.
-4. On the host machine, open a web browser and navigate to `localhost:5000` and follow the prompt to classify an image
-5. The uploaded images get saved in the `uploads/` folder
+For CPU based osx, use `export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-0.11.0rc0-py2-none-any.whl`, then `sudo pip install --upgrade $TF_BINARY_URL`
+
+to get all the other python requirements run `pip install -r requirements.txt`
+
+run `python app.py` to start server, then visit `localhost:5000`
+
+to use command line demo on an image, run `python classify_demo
+path/to/image.jpg`
+
+
+## Notes
+
+the classifier engine relies on tensorflow and a pretrained model inside the `model/` directory
+
+
+## Changelog
+* v1 (10/2016): switched to TensorFlow, doesn't rely on vagrant, retrainable with custom labels with docker image, faster and more maintainable
+* v0 (4/2016): used overfeat model which ran on a isolated vagrant box. Retraining is very difficult, the weights are > 1gb, there is no flexibility on the labels and it is slow
