@@ -30,7 +30,6 @@ def run_classify(f):
     prediction = classify(img_path, LABEL, MODEL)
     try:  # Format output
         rank = []  # list holding results
-        print '\033[1;32m\nBreed: %s\n\033[1;m' % prediction[0][0]
         for entry in prediction[0:n_predictions]:
             label, score = entry
             rank.append('%.2f%% : %s' % (100 * score, label))
