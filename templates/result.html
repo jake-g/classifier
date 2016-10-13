@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Classification</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h3 class="text-muted">Results</h3>
+    </div>
+    <hr/>
+    <div>
+        {% if data %}
+            <ul>
+                {{ data }}
+            </ul><br>
+        {% else %}
+            <h1>Classification failed</h1>
+        {% endif %}
+
+        {% if filename %}
+            <img src="{{filename}}" alt="input img" width="500">
+        {% else %}
+            <h1>Image failed to display</h1>
+        {% endif %}
+    </div>
+</div>
+</body>
+</html>

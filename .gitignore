@@ -1,0 +1,14 @@
+### Pictures
+uploads/
+.jpg
+.jpeg
+.png
+.bmp
+.pyc
+
+.DS_Store
+Icon
+
+
+*.iml
+.idea/
