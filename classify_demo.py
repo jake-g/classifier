@@ -1,16 +1,19 @@
-import sys
-from model.classifier import classify
+import argparse
+from model.classifier import classify, print_results
 
-# Init
-label_file = 'model/retrained_labels.txt'
-model_file = 'model/retrained_graph.pb'
+LABELS = 'model/retrained_labels.txt'
+MODEL = 'model/retrained_graph.pb'
 
-# Classify image
-prediction = classify(sys.argv[1], label_file, model_file)
 
-# Print Results (#1 in green first)
-top = prediction[0]
-print '\033[1;32m\n%s (%0.1f%%)\033[1;m' % (top[0], 100 * top[1])
-for entry in prediction[1:5]:
-    label, score = entry
-    print '%s (%0.1f%%)' % (label, 100 * score)
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--image", "-i", default="model/test.jpg", type=str, help="Image to classify")
+    parser.add_argument("--model", "-m", default=MODEL, type=str, help="Frozen model file to import")
+    parser.add_argument("--labels", "-l", default=LABELS, type=str, help="Frozen model file to import")
+    parser.add_argument("--gpu", type=float, help="ratio of GPU memory per process (ex: 0.5)")
+    args = parser.parse_args()
+
+
+    # Classify image
+    prediction = classify(args.image, args.labels, args.model, args.gpu)
+    print_results(prediction)

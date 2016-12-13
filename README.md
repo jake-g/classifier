@@ -8,8 +8,9 @@ Would recomend using the tensorflow docker image for server. The [Tensorflow get
 
 #### For testing
 * For CPU based osx, use `export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-0.11.0rc0-py2-none-any.whl`, then `sudo pip install --upgrade $TF_BINARY_URL`
-* to use command line demo on an image, run `python classify_demo
-path/to/image.jpg`
+* to use command line demo on an image, run `python classify_demo`
+* you can specify an image: -i `path/to/image.jpg`
+* If using GPU, you can specify memory
 
 
 #### Run Server

@@ -9,6 +9,10 @@ uploads/
 .DS_Store
 Icon
 
+*.pyc
 
 *.iml
 .idea/
+
+#venv
+env/
