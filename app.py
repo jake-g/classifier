@@ -77,11 +77,7 @@ def uploaded_file(filename):
     data = ''
     endpoint = 'http://127.0.0.1:' + str(PORT) + '/uploads/' + filename
     result = run_classify(filename)
-    json = jsonify(tokens=result, imageurl=endpoint)
-
-    for line in result:
-        data += Markup('<li>%s</li>' % line)
-    return render_template('result.html', filename=endpoint, data=data)
+    return jsonify(tokens=result, imageurl=endpoint)
 
 
 @app.route('/uploads/<filename>')

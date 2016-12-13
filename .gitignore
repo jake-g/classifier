@@ -9,8 +9,7 @@ uploads/
 .DS_Store
 Icon
 
-*.pyc
-
+*.py[cod]
 *.iml
 .idea/
 

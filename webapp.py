@@ -3,7 +3,6 @@ import argparse
 
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory, jsonify
 from flask import Markup
-from flask_cors import CORS
 from werkzeug import secure_filename
 
 from model.classifier import classify, print_results
@@ -77,7 +76,11 @@ def uploaded_file(filename):
     data = ''
     endpoint = 'http://127.0.0.1:' + str(PORT) + '/uploads/' + filename
     result = run_classify(filename)
-    return jsonify(tokens=result, imageurl=endpoint)
+    json = jsonify(tokens=result, imageurl=endpoint)
+
+    for line in result:
+        data += Markup('<li>%s</li>' % line)
+    return render_template('result.html', filename=endpoint, data=data)
 
 
 @app.route('/uploads/<filename>')
