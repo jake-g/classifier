@@ -8,24 +8,21 @@ from werkzeug import secure_filename
 
 from model.classifier import classify, print_results
 
-
 # SETTINGS
 N_PREDS = 5
 LABELS = 'model/retrained_labels.txt'
 MODEL = 'model/retrained_graph.pb'
-PORT = "5000"
-
+PORT = 5000
 
 # Set up app
 app = Flask(__name__)
 # cors = CORS(app)
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+PORT = int(os.environ.get('PORT', PORT))
 app.config['LABELS'] = os.path.join(APP_ROOT, LABELS)
 app.config['MODEL'] = os.path.join(APP_ROOT, MODEL)
 app.config['UPLOAD_FOLDER'] = os.path.join(APP_ROOT, 'uploads/')
 app.config['ALLOWED_EXTENSIONS'] = {'bmp', 'png', 'jpg', 'jpeg'}
-
-
 
 
 # Check filetype
@@ -78,7 +75,7 @@ def upload():
 @app.route('/show/<filename>')
 def uploaded_file(filename):
     data = ''
-    endpoint = 'http://127.0.0.1:5000/uploads/' + filename
+    endpoint = 'http://127.0.0.1:' + str(PORT) + '/uploads/' + filename
     result = run_classify(filename)
     json = jsonify(tokens=result, imageurl=endpoint)
 
