@@ -18,10 +18,11 @@ Would recomend using the tensorflow docker image for server. The [Tensorflow get
 
 2. To get all the other python requirements run `pip install -r requirements.txt`
 
-3. Run `python app.py` to start server, then visit `localhost:5000`
+3. Run `python webapp.py` to start server, then visit `localhost:5000`
 
 
 ## Notes
+* `api.py` returns a json of predictions
 the classifier engine relies on tensorflow and a pretrained model inside the `model/` directory. These files will get updated when the model is retrained. Specifically, `retrained_graph.pb` (the training model) and `retrained_labels.txt` (only if labels are added or removed)
 
 
