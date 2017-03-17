@@ -1,12 +1,11 @@
 # Woof Demo V2
 
-#### Run Server
-1. Install TensorFlow: check [here](https://www.tensorflow.org/versions/r0.11/get_started/os_setup.html) to see what version works (cpu / gpu / osx / linux / docker)
 
-2. To get all the other python requirements run `pip install -r requirements.txt`
+## Build Docker Image
+`docker build -t puppy-server .`
 
-3. Run `python webapp.py` to start server, then visit `localhost:5000`
-
+## Run Container
+docker run -it -p 5000:5000 -v /Users/jake/Dropbox/projects/puppyai/webapp/:/app/ tensorflow/tensorflow:nightly-devel
 
 ## Notes
 the classifier engine relies on tensorflow and a pretrained model inside the `model/` directory. These files will get updated when the model is retrained. Specifically, `retrained_graph.pb` (the training model) and `retrained_labels.txt` (only if labels are added or removed)
