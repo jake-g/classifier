@@ -2,7 +2,7 @@ import json
 import subprocess
 
 def classify(image_path, label_file, graph_file):
-    cmd = '/tensorflow/bazel-bin/tensorflow/examples/label_image_serve/label_image_serve'
+    cmd = '/tensorflow/bazel-bin/tensorflow/examples/label_image_backend/label_image_backend'
     classify_cmd = [
         cmd,
         '--output_layer=final_result',
