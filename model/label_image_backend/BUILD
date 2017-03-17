@@ -8,7 +8,7 @@ licenses(["notice"])  # Apache 2.0
 exports_files(["LICENSE"])
 
 cc_binary(
-    name = "label_image_serve",
+    name = "label_image_backend",
     srcs = [
         "main.cc",
     ],

@@ -1,4 +1,5 @@
 import os
+import time
 import argparse
 
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory, jsonify
@@ -33,9 +34,11 @@ def allowed_file(filename):
 # Classify image, return string
 def run_classify(f):
     img_path = os.path.join(app.config['UPLOAD_FOLDER'], f)
+    start_time = time.time()
     print('starting classifier...')
     results = classify(img_path, args.labels, args.model)
     print_top_n(results, n=N_PREDS)
+    print 'Elapsed Time: %0.3f seconds' % (time.time() - start_time)
     try:  # Format output
         rank = []  # list holding results
         for i in range(N_PREDS):
