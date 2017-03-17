@@ -11,6 +11,7 @@ Icon
 
 *.py[cod]
 *.iml
+*zip
 .idea/
 
 #venv

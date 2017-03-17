@@ -5,7 +5,7 @@ from flask import Flask, render_template, request, redirect, url_for, send_from_
 from flask import Markup
 from werkzeug import secure_filename
 
-from model.classifier import classify, print_results
+from model.classifier import classify, print_top_n
 
 # SETTINGS
 N_PREDS = 5
@@ -34,12 +34,14 @@ def allowed_file(filename):
 def run_classify(f):
     img_path = os.path.join(app.config['UPLOAD_FOLDER'], f)
     print('starting classifier...')
-    prediction = classify(img_path, args.labels, args.model, args.gpu)
-    print_results(prediction)
+    results = classify(img_path, args.labels, args.model)
+    print_top_n(results, n=N_PREDS)
     try:  # Format output
         rank = []  # list holding results
-        for entry in prediction[0:N_PREDS]:
-            label, score = entry
+        for i in range(N_PREDS):
+            pos = str(i)  # position key from best (0) to worst (n)
+            label = str(results[pos]['breed'])
+            score = float(results[pos]['score'])
             rank.append('%.2f%% : %s' % (100 * score, label))
         return rank
     except:
@@ -93,7 +95,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("--model", "-m", default=app.config['MODEL'], type=str, help="trained model")
     parser.add_argument("--labels", "-l", default=app.config['LABELS'], type=str, help="list of labels")
-    parser.add_argument("--gpu", type=float, help="ratio of GPU memory per process (ex: 0.5)")
     args = parser.parse_args()
 
     app.run(host="0.0.0.0", port=int(PORT), debug=True)
