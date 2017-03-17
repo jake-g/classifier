@@ -99,5 +99,4 @@ if __name__ == '__main__':
     parser.add_argument("--model", "-m", default=app.config['MODEL'], type=str, help="trained model")
     parser.add_argument("--labels", "-l", default=app.config['LABELS'], type=str, help="list of labels")
     args = parser.parse_args()
-
-    app.run(host="0.0.0.0", port=int(PORT), debug=True)
+    app.run(debug=True)

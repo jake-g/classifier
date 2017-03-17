@@ -5,7 +5,7 @@
 `docker build -t puppy-server .`
 
 ## Run Container
-docker run -it -p 5000:5000 -v /Users/jake/Dropbox/projects/puppyai/webapp/:/app/ tensorflow/tensorflow:nightly-devel
+docker run --name pup -it -p 5000:5000 -v $PWD:/app/ puppy-server
 
 ## Notes
 the classifier engine relies on tensorflow and a pretrained model inside the `model/` directory. These files will get updated when the model is retrained. Specifically, `retrained_graph.pb` (the training model) and `retrained_labels.txt` (only if labels are added or removed)
